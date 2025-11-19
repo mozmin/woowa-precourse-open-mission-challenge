@@ -1,13 +1,13 @@
 # 프리코스 오픈 미션: 프리코스 챌린지 🎯  
 **Woowa Open Mission (문자열 계산기 · 로또 · 자동차 경주 UI)**
 
+배포 주소: https://woowa-precourse-open-mission-challe.vercel.app/
+
 ## 구현 화면
 <img width="1914" height="910" alt="image" src="https://github.com/user-attachments/assets/f9226620-7c8e-4c95-be25-12308d5cb115" />
 <img width="1922" height="913" alt="image" src="https://github.com/user-attachments/assets/2a323598-fd41-4a87-b73d-e57e3d81e074" />
 <img width="1921" height="911" alt="image" src="https://github.com/user-attachments/assets/9e2b91cf-7c99-4969-a522-57bc8817d439" />
 
-
-배포 주소: https://woowa-precourse-open-mission-challe.vercel.app/
 > 1~3주차 동안 콘솔에서만 보였던 미션들을,  
 > **콘솔 대신 직관적인 UI로 체험할 수 있도록**
 > 피그마로 디자인하고,
