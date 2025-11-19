@@ -11,7 +11,7 @@ import './Lotto.css';
 
 const DEFAULT_WINNING_NUMBERS = ['1', '5', '7', '26', '28', '43'];
 const DEFAULT_BONUS_NUMBER = '30';
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 4;
 
 const NUMBER_COLORS = ['yellow', 'orange', 'blue', 'red', 'green', 'gray'];
 
@@ -25,7 +25,8 @@ function Lotto() {
   const [tickets, setTickets] = useState([]);
   const [stats, setStats] = useState(null);
   const [step, setStep] = useState(0);
-  const [error, setError] = useState('');
+  const [purchaseError, setPurchaseError] = useState('');
+  const [resultError, setResultError] = useState('');
 
   const ticketCount = useMemo(() => {
     const numericAmount = Number(amount);
@@ -47,25 +48,40 @@ function Lotto() {
     setBonusNumber(sanitized);
   };
 
-  const handleSubmit = (event) => {
+  const handlePurchase = (event) => {
     event.preventDefault();
+    try {
+      const numericAmount = Number(amount);
+      const generatedTickets = generateTickets(numericAmount);
+      setTickets(generatedTickets);
+      setStats(null);
+      setStep(1);
+      setPurchaseError('');
+    } catch (submissionError) {
+      setPurchaseError(submissionError.message);
+      setStep(0);
+    }
+  };
+
+  const handleShowResult = (event) => {
+    event.preventDefault();
+    if (tickets.length === 0) {
+      setResultError('먼저 로또를 발행해 주세요.');
+      return;
+    }
     try {
       const normalizedWinning = parseWinningNumbers(winningNumbers);
       const normalizedBonus = parseBonusNumber(bonusNumber, normalizedWinning);
-      const numericAmount = Number(amount);
-      const generatedTickets = generateTickets(numericAmount);
       const evaluation = evaluateTickets(
-        generatedTickets,
+        tickets,
         normalizedWinning,
         normalizedBonus
       );
-      setTickets(generatedTickets);
       setStats(evaluation);
-      setStep(1);
-      setError('');
+      setStep(3);
+      setResultError('');
     } catch (submissionError) {
-      setError(submissionError.message);
-      setStep(0);
+      setResultError(submissionError.message);
     }
   };
 
@@ -73,7 +89,10 @@ function Lotto() {
     if (nextStep < 0 || nextStep >= TOTAL_STEPS) {
       return;
     }
-    if (nextStep > 0 && !stats) {
+    if (nextStep > 1 && tickets.length === 0) {
+      return;
+    }
+    if (nextStep === 3 && !stats) {
       return;
     }
     setStep(nextStep);
@@ -82,7 +101,7 @@ function Lotto() {
   const renderStepContent = () => {
     if (step === 0) {
       return (
-        <form className="lotto__form" onSubmit={handleSubmit}>
+        <form className="lotto__form" onSubmit={handlePurchase}>
           <h2 className="lotto__title">로또</h2>
 
           <label className="lotto__label" htmlFor="lotto-amount">
@@ -106,6 +125,52 @@ function Lotto() {
             발행해요.
           </p>
 
+          <button type="submit" className="lotto__primary">
+            로또 발행
+          </button>
+
+          {purchaseError && (
+            <p className="lotto__error" role="alert">
+              {purchaseError}
+            </p>
+          )}
+        </form>
+      );
+    }
+
+    if (step === 1) {
+      return (
+        <section className="lotto__panel">
+          <h2 className="lotto__title">로또</h2>
+          <ul className="lotto__ticket-list">
+            {tickets.map((ticket, index) => (
+              <li key={`${ticket.join('-')}-${index}`}>
+                <span className="lotto__ticket-label">
+                  자동 {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className="lotto__ticket-numbers">
+                  {ticket
+                    .map((number) => String(number).padStart(2, '0'))
+                    .join(' ')}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <button
+            type="button"
+            className="lotto__primary lotto__primary--inline"
+            onClick={() => goToStep(2)}
+          >
+            당첨 번호 입력하기
+          </button>
+        </section>
+      );
+    }
+
+    if (step === 2) {
+      return (
+        <form className="lotto__form" onSubmit={handleShowResult}>
+          <h2 className="lotto__title">당첨 번호 입력</h2>
           <p className="lotto__label">당첨 번호를 입력하세요</p>
           <div className="lotto__numbers">
             {winningNumbers.map((value, index) => (
@@ -135,41 +200,19 @@ function Lotto() {
           </div>
 
           <button type="submit" className="lotto__primary">
-            번호 발행
+            결과 확인
           </button>
 
-          {error && (
+          {resultError && (
             <p className="lotto__error" role="alert">
-              {error}
+              {resultError}
             </p>
           )}
         </form>
       );
     }
 
-    if (step === 1) {
-      return (
-        <section className="lotto__panel">
-          <h2 className="lotto__title">로또</h2>
-          <ul className="lotto__ticket-list">
-            {tickets.map((ticket, index) => (
-              <li key={`${ticket.join('-')}-${index}`}>
-                <span className="lotto__ticket-label">
-                  자동 {String(index + 1).padStart(2, '0')}
-                </span>
-                <span className="lotto__ticket-numbers">
-                  {ticket
-                    .map((number) => String(number).padStart(2, '0'))
-                    .join(' ')}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      );
-    }
-
-    if (step === 2 && stats) {
+    if (step === 3 && stats) {
       return (
         <section className="lotto__panel">
           <h2 className="lotto__title">결과</h2>
@@ -221,7 +264,12 @@ function Lotto() {
           className="lotto__nav-button"
           aria-label="다음 단계"
           onClick={() => goToStep(step + 1)}
-          disabled={step === TOTAL_STEPS - 1 || !stats}
+          disabled={
+            step === TOTAL_STEPS - 1 ||
+            (step === 0 && tickets.length === 0) ||
+            (step === 1 && tickets.length === 0) ||
+            (step === 2 && !stats)
+          }
         >
           <span className="lotto__nav-icon lotto__nav-icon--next" />
         </button>
