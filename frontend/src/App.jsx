@@ -43,7 +43,7 @@ function App() {
     <div className="app-shell">
       <button
         type="button"
-        className={`hamburger ${isSidebarOpen ? 'hamburger--shifted' : ''}`}
+        className="hamburger"
         aria-label="탭 메뉴 토글"
         onClick={toggleSidebar}
       >

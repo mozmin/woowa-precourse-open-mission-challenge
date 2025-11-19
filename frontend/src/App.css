@@ -26,10 +26,6 @@
   z-index: 30;
 }
 
-.hamburger--shifted {
-  left: 220px;
-}
-
 .hamburger span {
   display: block;
   height: 2px;
