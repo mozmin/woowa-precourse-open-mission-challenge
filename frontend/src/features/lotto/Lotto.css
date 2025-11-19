@@ -1,0 +1,259 @@
+.lotto {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.lotto__content {
+  width: min(720px, 100%);
+}
+
+.lotto__title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 24px;
+  color: #2f2721;
+}
+
+.lotto__form {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 48px 56px;
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(22, 19, 16, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lotto__label {
+  font-size: 1.05rem;
+  color: #4b4037;
+  margin-bottom: 6px;
+}
+
+.lotto__amount-field {
+  position: relative;
+  background-color: #dcdcdc;
+  border-radius: 999px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lotto__amount-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  text-align: right;
+  color: #2b1f17;
+}
+
+.lotto__amount-input:focus {
+  outline: none;
+}
+
+.lotto__amount-suffix {
+  margin-left: 12px;
+  color: #72675e;
+}
+
+.lotto__hint {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #715f53;
+}
+
+.lotto__numbers {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lotto-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #2f2721;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.lotto-number--yellow {
+  background-color: #ffd447;
+}
+.lotto-number--orange {
+  background-color: #f2bc94;
+}
+.lotto-number--blue {
+  background-color: #7fb4ff;
+}
+.lotto-number--red {
+  background-color: #ff8a80;
+}
+.lotto-number--green {
+  background-color: #a4f082;
+}
+.lotto-number--gray {
+  background-color: #d6d6d6;
+}
+
+.lotto-number--bonus {
+  background-color: #cfcfcf;
+}
+
+.lotto-number--plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e5e5;
+  color: #6a5c52;
+  font-size: 1.5rem;
+}
+
+.lotto__primary {
+  margin-top: 8px;
+  align-self: center;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 36px;
+  background-color: #c5aea0;
+  color: #2f2721;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.lotto__error {
+  color: #d06868;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.lotto__panel {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 40px 48px;
+  border-radius: 32px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.lotto__ticket-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lotto__ticket-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(47, 39, 33, 0.1);
+}
+
+.lotto__ticket-label {
+  color: #7a6b62;
+  font-weight: 500;
+}
+
+.lotto__ticket-numbers {
+  font-family: 'Roboto Mono', 'Pretendard', monospace;
+  letter-spacing: 1px;
+}
+
+.lotto__result-list {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.15rem;
+}
+
+.lotto__result-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.lotto__result-summary {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #3c322b;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lotto__nav {
+  display: flex;
+  gap: 24px;
+}
+
+.lotto__nav-button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background-color: #d9cfc6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.lotto__nav-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.lotto__nav-icon {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.lotto__nav-icon--prev {
+  border-right: 12px solid #4b4037;
+}
+
+.lotto__nav-icon--next {
+  border-left: 12px solid #4b4037;
+}
+
+@media (max-width: 640px) {
+  .lotto__form,
+  .lotto__panel {
+    padding: 32px 24px;
+  }
+
+  .lotto-number {
+    width: 52px;
+    height: 52px;
+  }
+
+  .lotto__ticket-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
