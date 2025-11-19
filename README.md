@@ -5,19 +5,21 @@
 배포 주소: https://woowa-precourse-open-mission-challe.vercel.app/
 
 
-## 구현 화면
-<img width="1914" height="910" alt="image" src="https://github.com/user-attachments/assets/f9226620-7c8e-4c95-be25-12308d5cb115" />
-<img width="1922" height="913" alt="image" src="https://github.com/user-attachments/assets/2a323598-fd41-4a87-b73d-e57e3d81e074" />
-<img width="1921" height="911" alt="image" src="https://github.com/user-attachments/assets/9e2b91cf-7c99-4969-a522-57bc8817d439" />
-
-<br>
-
 > 1~3주차 동안 콘솔에서만 보였던 미션들을,  
 > **콘솔 대신 직관적인 UI로 체험할 수 있도록**
 > 피그마로 디자인하고,
 > 리액트로 구현하고,
 > 깃허브로 배포까지 해보며
 > 낯선 도구들을 다뤄보는 “도전”을 해보는 프로젝트
+
+<br>
+
+## 구현 화면
+<img width="1914" height="910" alt="image" src="https://github.com/user-attachments/assets/f9226620-7c8e-4c95-be25-12308d5cb115" />
+<img width="1922" height="913" alt="image" src="https://github.com/user-attachments/assets/2a323598-fd41-4a87-b73d-e57e3d81e074" />
+<img width="1921" height="911" alt="image" src="https://github.com/user-attachments/assets/9e2b91cf-7c99-4969-a522-57bc8817d439" />
+
+<br>
 
 ---
 
